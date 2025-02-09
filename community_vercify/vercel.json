@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "wsgi.py", "use": "@vercel/python" } 
+    ],
+    "functions": {
+      "api/wsgi": { "runtime": "python3.9", "handler": "wsgi:app" } 
+    }
+  }

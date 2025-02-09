@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}All Posts{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_posts.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">All Posts</h1>
+<div class="row mt-4">
+    <div class="col-md-12">
+        {% for post in posts %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <p>{{ post.content }}</p>
+                    <small>Posted by: {{ post.username }}</small>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button class="btn btn-success" onclick="upvotePost('{{ post.id }}')">Upvote</button>
+                        <button class="btn btn-danger" onclick="downvotePost('{{ post.id }}')">Downvote</button>
+                        <span>Upvotes: <span id="post-upvotes-{{ post.id }}">{{ post.upvotes }}</span></span>
+                        <span>Downvotes: <span id="post-downvotes-{{ post.id }}">{{ post.downvotes }}</span></span>
+                    </div>
+                    <a href="{{ url_for('routes.post_page', post_id=post.id) }}" class="btn btn-primary mt-3">View Comments</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+function upvotePost(postId) {
+    fetch(`/api/posts/${postId}/upvote`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            document.getElementById(`post-upvotes-${postId}`).innerText = data.upvotes;
+            document.getElementById(`post-downvotes-${postId}`).innerText = data.downvotes;
+        }
+    });
+}
+
+function downvotePost(postId) {
+    fetch(`/api/posts/${postId}/downvote`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            document.getElementById(`post-upvotes-${postId}`).innerText = data.upvotes;
+            document.getElementById(`post-downvotes-${postId}`).innerText = data.downvotes;
+        }
+    });
+}
+
+function fetchPostVotes() {
+    fetch('/api/posts')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(post => {
+            document.getElementById(`post-upvotes-${post.id}`).innerText = post.upvotes;
+            document.getElementById(`post-downvotes-${post.id}`).innerText = post.downvotes;
+        });
+    });
+}
+
+setInterval(fetchPostVotes, 5000); // Fetch votes every 5 seconds
+</script>
+{% endblock %}

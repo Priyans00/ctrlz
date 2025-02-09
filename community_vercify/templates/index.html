@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="index-container">
+    <h1 class="text-center">Welcome to the Fact Checking App</h1>
+    <div class="button-container">
+        <a href="{{ url_for('routes.register_page') }}" class="btn btn-primary">Register</a>
+        <a href="{{ url_for('routes.login_page') }}" class="btn btn-secondary">Login</a>
+    </div>
+</div>
+{% endblock %}

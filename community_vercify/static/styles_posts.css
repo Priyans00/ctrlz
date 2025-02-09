@@ -1,0 +1,80 @@
+/* styles_posts.css */
+body {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+}
+
+h1 {
+    color: #ecf5ff;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #ffffff;
+}
+
+span {
+    color: #ffffff;
+}
+
+.card {
+    background: rgb(30, 30, 30);
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card p {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.card small {
+    color: #00f408;
+}
+
+.btn {
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #fffdf4;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+.btn-primary:hover {
+    background-color: #0ff2b1;
+    border-color: #f8f7f5;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #fbfffc;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #fefffe;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #fbfbfb;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #ffffff;
+}

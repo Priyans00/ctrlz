@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Dashboard</h1>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h2>Create Post</h2>
+        <form action="{{ url_for('routes.create_post') }}" method="post">
+            <div class="form-group">
+                <textarea name="content" class="form-control" placeholder="Post content" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        </form>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <a href="{{ url_for('routes.posts_page') }}" class="btn btn-secondary">View All Posts and Comments</a>
+    </div>
+</div>
+{% endblock %}
