@@ -58,7 +58,7 @@ export default function Community() {
               variant="secondary"
               className="mt-4"
             >
-             <Link href="http://127.0.0.1:5000" target="_blank" rel="noopener noreferrer">
+             <Link href="" target="_blank" rel="noopener noreferrer">
                 Try Now <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
